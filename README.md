@@ -1,2 +1,14 @@
-A sample command-line application with an entrypoint in `bin/`, library code
-in `lib/`, and example unit test in `test/`.
+Dart Fundamental 
+- comments
+- variables
+- data types
+- numbers
+- strings
+- booleans
+- operators
+- exception
+- conversion
+- functions
+- variable scope
+- constants and final
+- null safety
