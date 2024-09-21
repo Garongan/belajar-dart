@@ -1,14 +1,6 @@
-Dart Fundamental 
-- comments
-- variables
-- data types
-- numbers
-- strings
-- booleans
-- operators
-- exception
-- conversion
-- functions
-- variable scope
-- constants and final
-- null safety
+Dart Control Flow 
+- if else condition
+- for loops
+- while and do while loops
+- break and continue
+- switch and case
