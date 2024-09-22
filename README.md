@@ -12,6 +12,13 @@ Object Oriented Programming
   - Polymorphism dalam bahasa Yunani berarti “banyak bentuk.” Sederhananya objek dapat memiliki bentuk atau implementasi yang berbeda-beda pada satu metode yang sama. Semua hewan bernafas, namun tentu kucing dan ikan memiliki cara bernafas yang berbeda. Perbedaan bentuk atau cara pernafasan tersebut merupakan contoh dari polymorphism.
 
 Learn about:
-- classw
+- class
 - property and methods
 - constructor
+- cascade notation
+- inheritance
+- abstract class
+- implicit interface
+- enumerated types
+- mixins
+- extension methods

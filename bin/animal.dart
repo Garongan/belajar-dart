@@ -18,6 +18,8 @@ class Animal {
     _name = value;
   }
 
+  String get name => _name;
+
   // getter
   int get age => _age;
 
