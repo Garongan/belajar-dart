@@ -1,119 +1,73 @@
-import 'animal.dart';
-import 'address_book.dart';
-import 'bird.dart';
-import 'rose.dart';
-import 'duck.dart';
-
-enum RainbowColor { red, orange, yellow, green, blue, indigo, violet }
-
-enum Weather {
-  sunny(15),
-  cloudy(34),
-  rain(69),
-  storm(83);
-
-  final int rainAmount;
-
-  const Weather(this.rainAmount);
-
-  @override
-  String toString() =>
-      "Today's weather forecast is $name with a $rainAmount% chance of rain";
-}
+import 'package:belajar_dart/belajar_dart.dart' as belajar_dart;
 
 void main(List<String> arguments) {
-  // to create new object from class
-  var sheep = Animal('Shaun', 18, 18.5);
-  sheep.eat();
-  print(sheep.weight);
-  sheep.poop();
-  sheep.sleep();
-  print(sheep.weight);
+  /*
+  * functional programming
+  * pure functions => normal function with parameter and call it with argument
+  * recursion => because in functional programming not implement concept for or while for iteration for iteration
+  * immutable variables => we can't change variable value that already defined
+  * */
 
-  var cat = Animal.cat('', 18.5)
-    ..name = 'Coki' // performing cascade operator to call property
-    ..eat(); // performing cascade operator to call method
-  cat.sleep();
-  print(cat.age);
+  var x = 5;
+  x = x + 1; // Example of not immutable variables
+  print('sum of 2 and 5 is ${belajar_dart.sum(2, 5)}');
+  print('fibonacci number of index 3 is ${belajar_dart.fibonacci(3)}');
 
-  final addressBook = (AddressBookBuilder()
-        ..name = 'jenny'
-        ..email = 'jenny@example.com'
-        ..phone = '415-555-0100')
-      .build();
-  print(addressBook.name);
+  // anonymous function
+  // var multiply = (int num1, int num2){
+  //   return num1 * num2;
+  // };
+  var multiply = (int num1, int num2) => num1 * num2;
 
-  // inheritance
-  var murray = Bird('Murray', 1, 1.8, 'black');
-  murray.fly();
-  murray.eat();
+  // another declaration of anonymous function
+  // divide(double num1, double num2){
+  //   return num1 / num2;
+  // }
+  divide(double num1, double num2) => num1 / num2;
 
-  // abstraction
-  var rose = Rose('Rose', 2, 'red');
-  rose.photosynthesis();
-  rose.blossom();
+  // lambda function
+  // Function printLambda = () {
+  //   print('This is lambda function');
+  // };
+  Function printLambda = () => print('This is lambda function');
 
-  // enum
-  print(RainbowColor.values); // print all of rainbow color values
-  print(RainbowColor.green); // print data of enum by value
-  print(RainbowColor.blue.name); // print name of enum by value
-  print(RainbowColor.red.index); // print index of value in enum
+  // another declaration of lambda function
+  printNewLambda() => print('This is lambda function from new declaration');
 
-  var weatherForecast = Weather.cloudy;
+  print(
+      'multiply number of 2 and 5 is ${multiply(2, 5)}'); // call the anonymous function
+  print('number 2 divide by 2 is ${divide(2, 5)}');
+  printLambda(); // call the lambda function
+  printNewLambda();
 
-  // implement switch with enum value
-  switch (weatherForecast) {
-    case Weather.sunny:
-      print("Today's weather forecast is sunny");
-      break;
-    case Weather.cloudy:
-      print("Today's weather forecast is cloudy");
-      break;
-    case Weather.rain:
-      print("Today's weather forecast is rain");
-      break;
-    case Weather.storm:
-      print("Today's weather forecast is storm");
-      break;
-  }
+  // high order function is using function as parameter
+  // Option 1
+  int Function(int num1, int num2) sum = (int num1, int num2) => num1 + num2;
+  myHigherOrderFunction('Hello', sum);
 
-  print(Weather.rain.rainAmount); // print custom attribute of weather
-  print(weatherForecast); // call the toString() method from enum
+  // Option 2
+  myHigherOrderFunction('Hello', (num1, num2) => num1 + num2);
 
-  var donald = Duck('Donald', 18, 20, 'white-blue');
-  donald.fly();
-  donald.swim();
-  donald.walk();
+  var fibonacci = [0, 1, 1, 2, 3, 5, 8, 13];
+  // using default high order function
+  fibonacci.forEach((item) {
+    print(item);
+  });
 
-  var arielNoah = Musician();
-  arielNoah.perform();
+  // Closures is function that can access variable inside lexical scope
+  var closureExample = calculate(2);
+  closureExample();
+  closureExample();
 }
 
-// multiple inheritance problem
-// when class has two same method from parent
-// can solved with mixins
-
-abstract class Performer {
-  void perform();
+void myHigherOrderFunction(
+    String message, int Function(int num1, int num2) myFunction) {
+  print(message);
+  print(myFunction(3, 4));
 }
 
-mixin Dancer implements Performer {
-  @override
-  void perform() {
-    print('Dancing');
-  }
-}
+Function calculate(base) {
+  var count = 1;
 
-mixin Singer implements Performer {
-  @override
-  void perform() {
-    print('Singing');
-  }
+  return () => print("Value is ${base + count++}"); // this function access variable count that inside of the lexical scope of Function calculate
 }
-
-class Musician extends Performer with Dancer, Singer {
-  void showTime() {
-    perform(); // the last sequence of mixins will by execute
-  }
-}
-
