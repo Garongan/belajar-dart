@@ -105,3 +105,20 @@ List filter(bool predicate(item)) { }
 // after dart version 2, we can use
 List filter(Function predicate) { }  // function type syntax
 ```
+
+- PREFER using lowerCamelCase for constant names.
+
+```dart
+const pi = 3.24;
+final daysOfWeek = 7;
+```
+
+- DO initialize fields at their declaration when possible.
+
+```dart
+// good example
+var openHours = 9;
+// bad example
+var closedHours;
+closedHours = 20;
+```
